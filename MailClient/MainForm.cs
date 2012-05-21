@@ -55,6 +55,7 @@ namespace MailClient
         public MainForm()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.mail;
 
             pop3Client = new Pop3Client();
 
@@ -207,8 +208,13 @@ namespace MailClient
 
         private void backgroundUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            statusLabel.Text = result;
-            toolStripProgressBar1.Visible = false;
+            try
+            {
+                statusLabel.Text = result;
+                toolStripProgressBar1.Visible = false;
+            }
+            catch (Exception)
+            { }
         }
 
         private void backgroundUpdater_DoWork(object sender, DoWorkEventArgs e)

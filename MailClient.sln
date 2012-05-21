@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailClient", "MailClient\MailClient.csproj", "{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{9D67454A-146E-4498-B0E2-6A3F82EC4552}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,8 @@ Global
 		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Debug|x86.Build.0 = Debug|x86
 		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Release|x86.ActiveCfg = Release|x86
 		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Release|x86.Build.0 = Release|x86
+		{9D67454A-146E-4498-B0E2-6A3F82EC4552}.Debug|x86.ActiveCfg = Debug
+		{9D67454A-146E-4498-B0E2-6A3F82EC4552}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

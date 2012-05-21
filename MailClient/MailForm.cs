@@ -14,6 +14,7 @@ namespace MailClient
         public MailForm()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.mail;
         }
 
         private void sendButton_Click(object sender, EventArgs e)
