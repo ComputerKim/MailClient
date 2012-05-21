@@ -34,8 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Resources\mail.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenPop">
@@ -106,6 +105,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mail.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_forward.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_reply.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_light_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_light_new_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_light_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_light_stuffed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

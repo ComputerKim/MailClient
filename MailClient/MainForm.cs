@@ -41,7 +41,7 @@ namespace MailClient
     {
         Dictionary<string, Message> messages = new Dictionary<string, Message>();
         Pop3Client pop3Client;
-        SmtpClient smtpClient;
+        SmtpClient smtpClient = new SmtpClient();
         List<oMessage> outbox = new List<oMessage>();
 
         string inServer, inUser, inPass, outServer, outUser, outPass;
@@ -92,8 +92,15 @@ namespace MailClient
 
                 paneContainer.Orientation = Properties.Settings.Default.paneOrientation;
 
+                smtpClient.Host = outServer;
+                smtpClient.Port = outPort;
+                smtpClient.Credentials = new System.Net.NetworkCredential(outUser, outPass);
+                smtpClient.EnableSsl = outSSL;
+
                 backgroundUpdater.RunWorkerAsync();
             }
+
+            
         }
 
         private void configurationButton_Click(object sender, EventArgs e)
@@ -117,7 +124,6 @@ namespace MailClient
                 outSSL = confForm.getOutSSL();
 
                 // Create smtp client
-                smtpClient = new SmtpClient();
                 smtpClient.Host = outServer;
                 smtpClient.Port = outPort;
                 smtpClient.Credentials = new System.Net.NetworkCredential(outUser, outPass);
@@ -229,22 +235,27 @@ namespace MailClient
                 if (loadSaved)
                 {
                     statusLabel.Text = "Loading mails...";
-                    foreach (string file in Directory.EnumerateFiles(Application.UserAppDataPath + "\\Inbox","*.eml"))
+                    string[] files = Directory.EnumerateFiles(Application.UserAppDataPath + "\\Inbox", "*.eml").ToArray<string>();
+                    for (int i = 0; i < files.Length; i++)
                     {
                         if (backgroundUpdater.CancellationPending)
                         {
                             return;
                         }
-                        
-                        message = Message.Load(new FileInfo(file));
+
+                        message = Message.Load(new FileInfo(files[i]));
 
                         if (!messages.ContainsKey(message.Headers.MessageId))
                         {
-                            AddMessage(message,false,1);
+                            AddMessage(message, false, 1,1);
                         }
+                        statusLabel.Text = "Loading " + i + " of " + files.Length + " mails.";
+                        backgroundUpdater.ReportProgress(100 / files.Length * (i+1));
                     }
                     loadSaved = false;
                 }
+
+                statusLabel.Text = "Checking for new mails.";
 
                 // if connected, then disconnect
                 if (pop3Client.Connected)
@@ -256,7 +267,6 @@ namespace MailClient
 
                 // Get number of messages
                 int count = pop3Client.GetMessageCount();
-                statusLabel.Text = "Total messages: " + count.ToString();
 
                 int success = 0;
                 int fail = 0;
@@ -270,12 +280,12 @@ namespace MailClient
                     if (!messages.ContainsKey(pop3Client.GetMessageHeaders(i).MessageId))
                     {
                         message = pop3Client.GetMessage(i);
-                        AddMessage(message,true,1);
+                        AddMessage(message,true,1,0);
                     }
                     success++;
 
                     statusLabel.Text = "Checking " + (count-i) + " of " + count + " mails.";
-                    backgroundUpdater.ReportProgress(100 - 100 / count * i);
+                    backgroundUpdater.ReportProgress(100 - 100 / count * (i + 1));
                 }
                 result = DateTime.Now.ToString() + " - success!";
             }
@@ -326,11 +336,13 @@ namespace MailClient
 
                 if (mailForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    ListViewItem itemPointer = mailView.Items.Add(mailForm.getRecipients());
-                    itemPointer.SubItems.Add(mailForm.getSubject());
-                    itemPointer.Group = mailView.Groups[0];
+                    ListViewItem newItem = new ListViewItem(mailForm.getRecipients());
+                    newItem.SubItems.Add(mailForm.getSubject());
+                    newItem.SubItems.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    newItem.Group = mailView.Groups[0];
+                    newItem.ImageIndex = 2;
 
-                    outbox.Add(new oMessage(mailForm.getRecipients(), mailForm.getSubject(), mailForm.getMessage(), itemPointer));
+                    outbox.Add(new oMessage(mailForm.getRecipients(), mailForm.getSubject(), mailForm.getMessage(), mailView.Items.Add(newItem)));
 
                     backgroundSender.RunWorkerAsync();
                 }
@@ -354,16 +366,16 @@ namespace MailClient
                     message.IsBodyHtml = false;
 
                     // Send message
-                    try
-                    {
+                    /*try
+                    {*/
                         smtpClient.Send(message);
                         DeleteMail(outbox[i].listItem);
                         outbox.RemoveAt(i);
-                    }
+                    /*}
                     catch (Exception err)
                     {
-
-                    }
+                        MessageBox.Show(err.Message);
+                    }*/
                 }
             }
         }
@@ -404,7 +416,7 @@ namespace MailClient
             Properties.Settings.Default.Save();
         }
 
-        void AddMessage(Message message, bool unread, int group)
+        void AddMessage(Message message, bool unread, int group, int image)
         {
             // Add the message to the dictionary from the messageNumber to the Message
             messages.Add(message.Headers.MessageId, message);
@@ -416,6 +428,7 @@ namespace MailClient
             newItem.SubItems.Add(message.Headers.DateSent.ToString("yyyy-MM-dd HH:mm:ss"));
             newItem.Tag = message.Headers.MessageId;
             newItem.Group = mailView.Groups[group];
+            newItem.ImageIndex = image;
             if (unread)
             {
                 newItem.Font = new Font(newItem.Font, FontStyle.Bold);
@@ -496,6 +509,16 @@ namespace MailClient
             { 
                 paneContainer.Orientation = Orientation.Horizontal;
             }
+        }
+
+        private void horizontalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            paneContainer.Orientation = Orientation.Horizontal;
+        }
+
+        private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            paneContainer.Orientation = Orientation.Vertical;
         }
 
     }

@@ -66,5 +66,61 @@ namespace MailClient.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap mail_add {
+            get {
+                object obj = ResourceManager.GetObject("mail_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mail_forward {
+            get {
+                object obj = ResourceManager.GetObject("mail_forward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mail_light {
+            get {
+                object obj = ResourceManager.GetObject("mail_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mail_light_left {
+            get {
+                object obj = ResourceManager.GetObject("mail_light_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mail_light_new_2 {
+            get {
+                object obj = ResourceManager.GetObject("mail_light_new_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mail_light_right {
+            get {
+                object obj = ResourceManager.GetObject("mail_light_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mail_light_stuffed {
+            get {
+                object obj = ResourceManager.GetObject("mail_light_stuffed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mail_reply {
+            get {
+                object obj = ResourceManager.GetObject("mail_reply", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
