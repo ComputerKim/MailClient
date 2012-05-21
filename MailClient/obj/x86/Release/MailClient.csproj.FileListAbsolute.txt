@@ -1,0 +1,12 @@
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\bin\Release\MailClient.exe.config
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\bin\Release\MailClient.exe
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\bin\Release\MailClient.pdb
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\bin\Release\OpenPop.dll
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.csprojResolveAssemblyReference.cache
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.ConfigurationForm.resources
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.MailForm.resources
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.MainForm.resources
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.Properties.Resources.resources
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.csproj.GenerateResource.Cache
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.exe
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.pdb
