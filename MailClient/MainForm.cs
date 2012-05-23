@@ -17,6 +17,7 @@ using System.Threading;
 using System.Reflection;
 using System.IO;
 using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace MailClient
 {
@@ -99,8 +100,6 @@ namespace MailClient
 
                 backgroundUpdater.RunWorkerAsync();
             }
-
-            
         }
 
         private void configurationButton_Click(object sender, EventArgs e)
@@ -157,6 +156,7 @@ namespace MailClient
             if (e.Item.Font.Bold)
             {
                 e.Item.Font = new Font(e.Item.Font, FontStyle.Regular);
+                e.Item.ImageIndex = 1;
             }
         }
 
@@ -521,6 +521,25 @@ namespace MailClient
             paneContainer.Orientation = Orientation.Vertical;
         }
 
+        private void decryptButton_Click(object sender, EventArgs e)
+        {
+            DecryptForm newForm = new DecryptForm();
+
+            if (newForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                using (RijndaelManaged myRijndael = new RijndaelManaged())
+                {
+                    try
+                    {
+                        contentView.DocumentText = Encryption.DecryptStringFromBytes(Convert.FromBase64String(contentView.DocumentText.Replace("<br />", "\n")), Encoding.ASCII.GetBytes(newForm.getKey()), Encoding.ASCII.GetBytes("1234567890123456")).Replace("\n","<br />");
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("FAIL!");
+                    }
+                }
+            }
+        }
     }
 }
 

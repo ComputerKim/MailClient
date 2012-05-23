@@ -350,6 +350,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "ConfigurationForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Configuration";
             this.Load += new System.EventHandler(this.ConfigurationForm_Load);
             this.flowLayoutPanel1.ResumeLayout(false);

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.encryptionKey = new System.Windows.Forms.TextBox();
+            this.encrypt = new System.Windows.Forms.CheckBox();
             this.subjectTextbox = new System.Windows.Forms.TextBox();
             this.recipientsTextbox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,6 +42,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.encryptionKey);
+            this.panel1.Controls.Add(this.encrypt);
             this.panel1.Controls.Add(this.subjectTextbox);
             this.panel1.Controls.Add(this.recipientsTextbox);
             this.panel1.Controls.Add(this.label2);
@@ -50,6 +54,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(588, 81);
             this.panel1.TabIndex = 0;
+            // 
+            // encryptionKey
+            // 
+            this.encryptionKey.Location = new System.Drawing.Point(155, 57);
+            this.encryptionKey.Name = "encryptionKey";
+            this.encryptionKey.Size = new System.Drawing.Size(421, 20);
+            this.encryptionKey.TabIndex = 6;
+            this.encryptionKey.Text = "Encryption key (has to be 16, 24 or 32 chars)";
+            this.encryptionKey.Visible = false;
+            // 
+            // encrypt
+            // 
+            this.encrypt.AutoSize = true;
+            this.encrypt.Location = new System.Drawing.Point(87, 59);
+            this.encrypt.Name = "encrypt";
+            this.encrypt.Size = new System.Drawing.Size(62, 17);
+            this.encrypt.TabIndex = 5;
+            this.encrypt.Text = "Encrypt";
+            this.encrypt.UseVisualStyleBackColor = true;
+            this.encrypt.CheckedChanged += new System.EventHandler(this.encrypt_CheckedChanged);
             // 
             // subjectTextbox
             // 
@@ -111,6 +135,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "MailForm";
             this.Text = "MailForm";
+            this.Load += new System.EventHandler(this.MailForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -127,5 +152,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.TextBox messageTextbox;
+        private System.Windows.Forms.TextBox encryptionKey;
+        private System.Windows.Forms.CheckBox encrypt;
     }
 }

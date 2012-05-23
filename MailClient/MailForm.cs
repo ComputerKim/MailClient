@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.IO;
 
 namespace MailClient
 {
@@ -25,8 +27,24 @@ namespace MailClient
             }
             else
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
+                if (encrypt.Checked)
+                {
+                    if (encryptionKey.Text.Length == 16 | encryptionKey.Text.Length == 24 | encryptionKey.Text.Length == 32)
+                    {
+                        messageTextbox.Text = Convert.ToBase64String(Encryption.EncryptStringToBytes(messageTextbox.Text, Encoding.ASCII.GetBytes(encryptionKey.Text), Encoding.ASCII.GetBytes("1234567890123456")));
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "Encryption key has to be 16, 24 or 32 chars in length.","Ops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    this.Close();
+                }
             }
         }
 
@@ -53,6 +71,16 @@ namespace MailClient
         public void setSubject(string str)
         {
             subjectTextbox.Text = str;
+        }
+
+        private void encrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            encryptionKey.Visible = encrypt.Checked;
+        }
+
+        private void MailForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

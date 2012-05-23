@@ -10,3 +10,7 @@ X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Debug\Mai
 X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Debug\MailClient.pdb
 X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Debug\MailClient.MailForm.resources
 X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\bin\Debug\MailClient.exe.config
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\bin\Debug\MailClient.exe.manifest
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\bin\Debug\MailClient.application
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Debug\MailClient.exe.manifest
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Debug\MailClient.application

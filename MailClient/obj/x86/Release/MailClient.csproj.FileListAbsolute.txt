@@ -10,3 +10,8 @@ X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\M
 X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.csproj.GenerateResource.Cache
 X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.exe
 X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.pdb
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\bin\Release\MailClient.exe.manifest
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\bin\Release\MailClient.application
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.exe.manifest
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.application
+X:\Documents\Visual Studio 2010\Projects\MailClient\MailClient\obj\x86\Release\MailClient.DecryptForm.resources

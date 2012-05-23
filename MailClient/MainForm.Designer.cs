@@ -39,7 +39,6 @@
             this.backgroundSender = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.browseButton = new System.Windows.Forms.ToolStripMenuItem();
             this.configurationButton = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +47,9 @@
             this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hiddenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.browseButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.decryptButton = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.newButton = new System.Windows.Forms.ToolStripMenuItem();
             this.replyButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,8 +63,8 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.contentView = new System.Windows.Forms.WebBrowser();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.contentView = new System.Windows.Forms.WebBrowser();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paneContainer)).BeginInit();
@@ -111,6 +113,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.viewToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.toolStripSeparator6,
             this.newButton,
             this.replyButton,
@@ -126,20 +129,12 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.browseButton,
             this.configurationButton,
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 23);
             this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // browseButton
-            // 
-            this.browseButton.Name = "browseButton";
-            this.browseButton.Size = new System.Drawing.Size(148, 22);
-            this.browseButton.Text = "Browse";
-            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
             // 
             // configurationButton
             // 
@@ -197,6 +192,29 @@
             this.hiddenToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.hiddenToolStripMenuItem.Text = "Hidden";
             // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.browseButton,
+            this.decryptButton});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 23);
+            this.toolsToolStripMenuItem.Text = "&Tools";
+            // 
+            // browseButton
+            // 
+            this.browseButton.Name = "browseButton";
+            this.browseButton.Size = new System.Drawing.Size(152, 22);
+            this.browseButton.Text = "Browse";
+            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+            // 
+            // decryptButton
+            // 
+            this.decryptButton.Name = "decryptButton";
+            this.decryptButton.Size = new System.Drawing.Size(152, 22);
+            this.decryptButton.Text = "Decrypt";
+            this.decryptButton.Click += new System.EventHandler(this.decryptButton_Click);
+            // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
@@ -249,13 +267,13 @@
             // sendMailsToolStripMenuItem
             // 
             this.sendMailsToolStripMenuItem.Name = "sendMailsToolStripMenuItem";
-            this.sendMailsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sendMailsToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.sendMailsToolStripMenuItem.Text = "Send mails";
             // 
             // updateMailsToolStripMenuItem
             // 
             this.updateMailsToolStripMenuItem.Name = "updateMailsToolStripMenuItem";
-            this.updateMailsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.updateMailsToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.updateMailsToolStripMenuItem.Text = "Update mails";
             // 
             // paneContainer
@@ -319,6 +337,14 @@
             this.columnHeader3.Text = "Date";
             this.columnHeader3.Width = 129;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "mail_light.png");
+            this.imageList1.Images.SetKeyName(1, "mail_light_stuffed.png");
+            this.imageList1.Images.SetKeyName(2, "mail_light_up.png");
+            // 
             // contentView
             // 
             this.contentView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -327,14 +353,6 @@
             this.contentView.Name = "contentView";
             this.contentView.Size = new System.Drawing.Size(766, 253);
             this.contentView.TabIndex = 0;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "mail_light.png");
-            this.imageList1.Images.SetKeyName(1, "mail_light_stuffed.png");
-            this.imageList1.Images.SetKeyName(2, "mail_light_up.png");
             // 
             // MainForm
             // 
@@ -371,7 +389,6 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem browseButton;
         private System.Windows.Forms.ToolStripMenuItem configurationButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -395,6 +412,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.WebBrowser contentView;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem decryptButton;
+        private System.Windows.Forms.ToolStripMenuItem browseButton;
 
     }
 }
