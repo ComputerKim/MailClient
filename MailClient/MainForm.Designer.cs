@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Outbox", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Inbox", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Outbox", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Inbox", System.Windows.Forms.HorizontalAlignment.Left);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -50,6 +50,8 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.browseButton = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.rSAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rijndaelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.newButton = new System.Windows.Forms.ToolStripMenuItem();
             this.replyButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -210,10 +212,26 @@
             // 
             // decryptButton
             // 
+            this.decryptButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rSAToolStripMenuItem,
+            this.rijndaelToolStripMenuItem});
             this.decryptButton.Name = "decryptButton";
             this.decryptButton.Size = new System.Drawing.Size(152, 22);
             this.decryptButton.Text = "Decrypt";
-            this.decryptButton.Click += new System.EventHandler(this.decryptButton_Click);
+            // 
+            // rSAToolStripMenuItem
+            // 
+            this.rSAToolStripMenuItem.Name = "rSAToolStripMenuItem";
+            this.rSAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rSAToolStripMenuItem.Text = "RSA";
+            this.rSAToolStripMenuItem.Click += new System.EventHandler(this.rSAToolStripMenuItem_Click);
+            // 
+            // rijndaelToolStripMenuItem
+            // 
+            this.rijndaelToolStripMenuItem.Name = "rijndaelToolStripMenuItem";
+            this.rijndaelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rijndaelToolStripMenuItem.Text = "Rijndael";
+            this.rijndaelToolStripMenuItem.Click += new System.EventHandler(this.rijndaelToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
@@ -303,13 +321,13 @@
             this.mailView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mailView.FullRowSelect = true;
             this.mailView.GridLines = true;
-            listViewGroup1.Header = "Outbox";
-            listViewGroup1.Name = "listViewGroup2";
-            listViewGroup2.Header = "Inbox";
-            listViewGroup2.Name = "listViewGroup1";
+            listViewGroup3.Header = "Outbox";
+            listViewGroup3.Name = "listViewGroup2";
+            listViewGroup4.Header = "Inbox";
+            listViewGroup4.Name = "listViewGroup1";
             this.mailView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
             this.mailView.Location = new System.Drawing.Point(0, 0);
             this.mailView.MultiSelect = false;
             this.mailView.Name = "mailView";
@@ -415,6 +433,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem decryptButton;
         private System.Windows.Forms.ToolStripMenuItem browseButton;
+        private System.Windows.Forms.ToolStripMenuItem rSAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rijndaelToolStripMenuItem;
 
     }
 }

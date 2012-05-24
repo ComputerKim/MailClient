@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MailClient.exe" size="77312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MailClient.exe" size="80896">
       <assemblyIdentity name="MailClient" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>T2SCZI8lg1DK9i9JiEGAWrm3KU8=</dsig:DigestValue>
+        <dsig:DigestValue>qsvB+u9lGmj8USVC+X/XkbhR3/g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

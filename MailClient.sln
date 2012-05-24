@@ -7,15 +7,25 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Inst
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Debug|x86.ActiveCfg = Release|x86
 		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Debug|x86.Build.0 = Release|x86
+		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Release|x86.ActiveCfg = Release|x86
 		{65D6AB02-4C53-430B-81B1-F2289BF6CA5C}.Release|x86.Build.0 = Release|x86
+		{9D67454A-146E-4498-B0E2-6A3F82EC4552}.Debug|Any CPU.ActiveCfg = Debug
+		{9D67454A-146E-4498-B0E2-6A3F82EC4552}.Debug|Any CPU.Build.0 = Debug
 		{9D67454A-146E-4498-B0E2-6A3F82EC4552}.Debug|x86.ActiveCfg = Release
+		{9D67454A-146E-4498-B0E2-6A3F82EC4552}.Release|Any CPU.ActiveCfg = Release
+		{9D67454A-146E-4498-B0E2-6A3F82EC4552}.Release|Any CPU.Build.0 = Release
 		{9D67454A-146E-4498-B0E2-6A3F82EC4552}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution

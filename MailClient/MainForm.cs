@@ -71,10 +71,13 @@ namespace MailClient
             {
                 System.IO.Directory.CreateDirectory(Application.UserAppDataPath + "\\Inbox");
             }
-
             if (!System.IO.Directory.Exists(Application.UserAppDataPath + "\\Outbox"))
             {
                 System.IO.Directory.CreateDirectory(Application.UserAppDataPath + "\\Outbox");
+            }
+            if (!System.IO.Directory.Exists(Application.UserAppDataPath + "\\RSA"))
+            {
+                System.IO.Directory.CreateDirectory(Application.UserAppDataPath + "\\RSA");
             }
 
             if (Properties.Settings.Default.inServer != "" | Properties.Settings.Default.outServer != "")
@@ -98,6 +101,13 @@ namespace MailClient
                 smtpClient.Credentials = new System.Net.NetworkCredential(outUser, outPass);
                 smtpClient.EnableSsl = outSSL;
 
+                // Sort mailView by date
+                mailView_ColumnClick(mailView, new ColumnClickEventArgs(2));
+                mailView_ColumnClick(mailView,new ColumnClickEventArgs(2));
+
+                // Update
+                toolStripProgressBar1.Value = 0;
+                toolStripProgressBar1.Visible = true;
                 backgroundUpdater.RunWorkerAsync();
             }
         }
@@ -146,7 +156,7 @@ namespace MailClient
 
                 if (message.FindFirstHtmlVersion() == null)
                 {
-                    contentView.DocumentText = message.FindFirstPlainTextVersion().GetBodyAsText().Replace("\n", "<br />");
+                    contentView.DocumentText = message.FindFirstPlainTextVersion().GetBodyAsText().Replace("\n", "<br />").Replace("<","&#60;").Replace(">","&#62;");
                 }
                 else
                 {
@@ -216,7 +226,7 @@ namespace MailClient
         {
             try
             {
-                statusLabel.Text = result;
+                UpdateStatus(result);
                 toolStripProgressBar1.Visible = false;
             }
             catch (Exception)
@@ -228,13 +238,11 @@ namespace MailClient
 
             try
             {
-                ShowProgressbar();
-
                 Message message;
 
                 if (loadSaved)
                 {
-                    statusLabel.Text = "Loading mails...";
+                    UpdateStatus("Loading mails...");
                     string[] files = Directory.EnumerateFiles(Application.UserAppDataPath + "\\Inbox", "*.eml").ToArray<string>();
                     for (int i = 0; i < files.Length; i++)
                     {
@@ -249,13 +257,13 @@ namespace MailClient
                         {
                             AddMessage(message, false, 1,1);
                         }
-                        statusLabel.Text = "Loading " + i + " of " + files.Length + " mails.";
+                        UpdateStatus("Loading " + i + " of " + files.Length + " mails.");
                         backgroundUpdater.ReportProgress(100 / files.Length * (i+1));
                     }
                     loadSaved = false;
                 }
 
-                statusLabel.Text = "Checking for new mails.";
+                UpdateStatus("Checking for new mails.");
 
                 // if connected, then disconnect
                 if (pop3Client.Connected)
@@ -284,7 +292,7 @@ namespace MailClient
                     }
                     success++;
 
-                    statusLabel.Text = "Checking " + (count-i) + " of " + count + " mails.";
+                    UpdateStatus("Checking " + (count-i) + " of " + count + " mails.");
                     backgroundUpdater.ReportProgress(100 - 100 / count * (i + 1));
                 }
                 result = DateTime.Now.ToString() + " - success!";
@@ -436,9 +444,9 @@ namespace MailClient
 
             AddMailToView(newItem);
 
-            if (!File.Exists(Application.UserAppDataPath + "\\Inbox\\" + message.Headers.DateSent.ToString("yyyyMMddHHmmssfffffff") + ".eml"))
+            if (!File.Exists(Application.UserAppDataPath + "\\Inbox\\" + message.Headers.MessageId + ".eml"))
             {
-                message.Save(new FileInfo(Application.UserAppDataPath + "\\Inbox\\" + message.Headers.DateSent.ToString("yyyyMMddHHmmssfffffff") + ".eml"));
+                message.Save(new FileInfo(Application.UserAppDataPath + "\\Inbox\\" + message.Headers.MessageId + ".eml"));
             }
         }
 
@@ -448,22 +456,23 @@ namespace MailClient
             {
                 if (!backgroundUpdater.IsBusy)
                 {
+                    toolStripProgressBar1.Value = 0;
+                    toolStripProgressBar1.Visible = true;
                     backgroundUpdater.RunWorkerAsync();
                 }
             }
         }
 
-        delegate void ShowProgressbarDelegate();
-        void ShowProgressbar()
+        delegate void UpdateStatusDelegate(string str);
+        void UpdateStatus(string str)
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new ShowProgressbarDelegate(ShowProgressbar), new object[] { });
+                this.Invoke(new UpdateStatusDelegate(UpdateStatus), new object[] { str });
             }
             else
             {
-                toolStripProgressBar1.Value = 0;
-                toolStripProgressBar1.Visible = true;
+                statusLabel.Text = str;
             }
         }
 
@@ -521,7 +530,20 @@ namespace MailClient
             paneContainer.Orientation = Orientation.Vertical;
         }
 
-        private void decryptButton_Click(object sender, EventArgs e)
+        private void rSAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.InitialDirectory = Application.UserAppDataPath + "\\RSA";
+            fileDialog.Multiselect = false;
+            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
+                RSA.FromXmlString(File.ReadAllText(fileDialog.FileName));
+                contentView.DocumentText = Encoding.Unicode.GetString(RSA.Decrypt(Convert.FromBase64String(contentView.DocumentText.Replace("<br />","\n")),false)).Replace("\n","<br />");
+            }
+        }
+
+        private void rijndaelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DecryptForm newForm = new DecryptForm();
 
@@ -531,7 +553,7 @@ namespace MailClient
                 {
                     try
                     {
-                        contentView.DocumentText = Encryption.DecryptStringFromBytes(Convert.FromBase64String(contentView.DocumentText.Replace("<br />", "\n")), Encoding.ASCII.GetBytes(newForm.getKey()), Encoding.ASCII.GetBytes("1234567890123456")).Replace("\n","<br />");
+                        contentView.DocumentText = Encryption.DecryptStringFromBytes(Convert.FromBase64String(contentView.DocumentText.Replace("<br />", "\n")), Encoding.ASCII.GetBytes(newForm.getKey()), Encoding.ASCII.GetBytes("1234567890123456")).Replace("\n", "<br />");
                     }
                     catch (Exception)
                     {

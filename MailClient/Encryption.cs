@@ -93,16 +93,5 @@ namespace MailClient
             return plaintext;
 
         }
-
-
-        public static byte[] GetBytes(string str)
-        {
-            byte[] bytes = new byte[str.Length-1];
-            foreach (byte b in str.ToCharArray())
-            {
-                bytes[0]=(byte)b;
-            }
-            return bytes;
-        }
     }
 }
