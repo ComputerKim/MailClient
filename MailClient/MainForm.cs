@@ -156,7 +156,7 @@ namespace MailClient
 
                 if (message.FindFirstHtmlVersion() == null)
                 {
-                    contentView.DocumentText = message.FindFirstPlainTextVersion().GetBodyAsText().Replace("\n", "<br />").Replace("<","&#60;").Replace(">","&#62;");
+                    contentView.DocumentText = message.FindFirstPlainTextVersion().GetBodyAsText().Replace("<", "&#60;").Replace(">", "&#62;").Replace("\n", "<br />");
                 }
                 else
                 {
@@ -539,7 +539,7 @@ namespace MailClient
             {
                 RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
                 RSA.FromXmlString(File.ReadAllText(fileDialog.FileName));
-                contentView.DocumentText = Encoding.Unicode.GetString(RSA.Decrypt(Convert.FromBase64String(contentView.DocumentText.Replace("<br />","\n")),false)).Replace("\n","<br />");
+                contentView.DocumentText = Encoding.Unicode.GetString(RSA.Decrypt(Convert.FromBase64String(contentView.DocumentText.Replace("<br />", "\n").Replace("&#60;","<").Replace("&#62;",">")), false)).Replace("<", "&#60;").Replace(">", "&#62;").Replace("\n", "<br />");
             }
         }
 
@@ -553,7 +553,7 @@ namespace MailClient
                 {
                     try
                     {
-                        contentView.DocumentText = Encryption.DecryptStringFromBytes(Convert.FromBase64String(contentView.DocumentText.Replace("<br />", "\n")), Encoding.ASCII.GetBytes(newForm.getKey()), Encoding.ASCII.GetBytes("1234567890123456")).Replace("\n", "<br />");
+                        contentView.DocumentText = Encryption.DecryptStringFromBytes(Convert.FromBase64String(contentView.DocumentText.Replace("<br />", "\n").Replace("&#60;", "<").Replace("&#62;", ">")), Encoding.ASCII.GetBytes(newForm.getKey()), Encoding.ASCII.GetBytes("1234567890123456")).Replace("<", "&#60;").Replace(">", "&#62;").Replace("\n", "<br />");
                     }
                     catch (Exception)
                     {

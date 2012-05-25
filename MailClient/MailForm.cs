@@ -42,7 +42,7 @@ namespace MailClient
                 }
                 else if (rSAToolStripMenuItem.Checked)
                 {
-                    {
+                    try {
                         RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
                         RSA.FromXmlString(encryptionKey.Text);
                         messageTextbox.Text = Convert.ToBase64String(RSA.Encrypt(Encoding.Unicode.GetBytes(messageTextbox.Text), false));

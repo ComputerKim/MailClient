@@ -67,20 +67,6 @@ namespace MailClient.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap mail_add {
-            get {
-                object obj = ResourceManager.GetObject("mail_add", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap mail_forward {
-            get {
-                object obj = ResourceManager.GetObject("mail_forward", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap mail_light {
             get {
                 object obj = ResourceManager.GetObject("mail_light", resourceCulture);
@@ -112,13 +98,6 @@ namespace MailClient.Properties {
         internal static System.Drawing.Bitmap mail_light_stuffed {
             get {
                 object obj = ResourceManager.GetObject("mail_light_stuffed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap mail_reply {
-            get {
-                object obj = ResourceManager.GetObject("mail_reply", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

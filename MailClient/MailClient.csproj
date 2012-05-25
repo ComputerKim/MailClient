@@ -154,15 +154,6 @@
     <None Include="Resources\mail.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mail_add.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\mail_forward.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\mail_reply.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\mail_light.png" />
   </ItemGroup>
   <ItemGroup>
